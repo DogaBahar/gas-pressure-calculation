@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no,maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    <style>
+                body {
+        background:#ada996;
+        background: -webkit-linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);
+        background: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);
+
+        }
+        
+        .marginauto {
+        margin: 10px auto 20px;
+        display: block;
+        }
+        
+        h5{
+            text-align: center;
+        }
+
+        #select_region{
+            padding-left: 400px;
+        }
+
+        #select_gas{
+            position: relative;
+            text-align: center;
+        }
+        .gas{
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .inlet{
+            
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .pressure{
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .calorific{
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        
+
+        #form1{
+            padding-left:120px;
+
+        }
+        #form2{
+            padding-left:120px;
+            
+        }
+
+        #cal{
+            padding:8px;
+            width:15%;
+            font-size:30px;
+        }
+
+        .result{
+            font-weight: bold;
+            font-size: 30px;
+        }
+
+
+        /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+        @media screen and (max-width: 600px) {
+        #cal {
+            width:20%;
+            font-size:15px;
+            padding:8px;
+        }
+
+        .inlet{    
+            text-decoration: underline;
+            font-weight: bold;
+            font-size:14px;
+        }
+        .pressure{
+            text-decoration: underline;
+            font-weight: bold;
+            font-size:14px;
+        }
+        .calorific{
+            text-decoration: underline;
+            font-weight: bold;
+            font-size:14px;
+        }
+
+        #form1{
+            padding-left:60px;
+            font-size:14px;
+
+        }
+        #form2{
+            padding-left:60px;
+            font-size:14px;
+        }
+
+        .marginauto {
+        max-width:35%;
+        display:block;
+        height:auto;
+        margin: 2px auto 4px;
+        }
+
+        .gas{
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .title{
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .result{
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .navbar-brand{
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+
+        }
+
+    </style>
+    
+    <title>La Chute de Pression</title>
+</head>
+    <body>
+    <script>
+
+        document.getElementById("G20").addEventListener("click", myFunction);
+        document.getElementById("G25").addEventListener("click", myFunction2);
+        document.getElementById("Propane").addEventListener("click", myFunction3);
+
+        function myFunction() {
+            document.getElementById("inlet_pres").innerHTML = "21mbar";
+            document.getElementById("pres").innerHTML = "1mbar";
+            document.getElementById("calorific_val").innerHTML = "11.72 kWh/m³";
+        }
+
+        function myFunction2() {
+            document.getElementById("inlet_pres").innerHTML = "25mbar";
+            document.getElementById("pres").innerHTML = "1mbar";
+            document.getElementById("calorific_val").innerHTML = "10.14 kWh/m³";
+        }
+        function myFunction3() {
+            document.getElementById("inlet_pres").innerHTML = "37mbar";
+            document.getElementById("pres").innerHTML = "1mbar";
+            document.getElementById("calorific_val").innerHTML = "27.54 kWh/m³";
+        }
+
+    </script>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">PAKTERMO</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sélection de la Langue
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="english">English</a>
+          <a class="dropdown-item" href="francais">Français</a>
+          <a class="dropdown-item" href="dutch">Nederlands</a>
+          <a class="dropdown-item" href="deutsch">Deutsch</a>
+          <a class="dropdown-item" href="turkce">Türkçe</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+    <div class="container">
+        
+        <span class="img.container">
+                <img class="marginauto" src="{{url_for('static', filename='pakter.PNG')}} " alt="centered image"/>
+        </span>
+    <h5 class="title">Guide des Tailles pour Tuyaux Ondulés 15266</h5>
+
+    
+    <form action = "http://127.0.0.1:8080/francais" method='POST'>
+
+    <div class="form-group">    
+        
+        <h5 class="gas">Veuillez sélectionner votre type de gaz</h5>
+        <div id="select_gas">
+        <div class="form-check form-check-inline" >
+        <input onclick="myFunction()"  class="form-check-input" type="radio" name="inlineRadioOptions" id="G20" value="G20" required>
+        <label class="form-check-label" for="inlineRadio1">Gaz Naturel G20 H</label>
+        </div>
+        <div class="form-check form-check-inline" >
+        <input onclick="myFunction2()" class="form-check-input" type="radio" name="inlineRadioOptions" id="G25" value="G25" required>
+        <label class="form-check-label" for="inlineRadio2">Gaz Naturel G25 L</label>
+        </div>
+        <div class="form-check form-check-inline" >
+        <input onclick="myFunction3()" class="form-check-input" type="radio" name="inlineRadioOptions" id="Propane" value="Propane" required>
+        <label class="form-check-label" for="inlineRadio2">Propane</label>
+        </div>
+        </div>
+        <div class="container-fluid"> 
+            <br>
+        <div class="row justify-content-center"> 
+            <div class="col-2 col-md-2" >
+                <h6 class="inlet">Pression D'entrée</h6>
+            </div>
+            <div class="col-2 col-md-2" >
+                <h6 class="pressure">La Chute Pression </h6>
+            </div>
+            <div class="col-2 col-md-2" >
+                <h6 class="calorific">Valeur Calorifique</h6>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-2 col-md-2 col-2" >
+                <h6 class="inlet" id="inlet_pres">21mbar</h6>
+            </div>
+            <div class="col-2 col-md-2 col-2">
+                <h6 class="pressure" id="pres">1mbar</h6>
+            </div>
+            <div class="col-2 col-md-2 col-2">
+                <h6 class="calorific" id="calorific_val">11.72 kWh/m³</h6>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+
+    <div class="form-group row" id="form1">  
+        <div class="col-sm-6" > 
+        <label>DN - Diamétre Nominal</label>
+        <br>
+        <select class="col-lg-9" title="DN" class="form-control" id="DN" name="DN" required>
+            <option value="dn15" name="dn15" {% if DN=='' %} selected {% endif %} >DN15</option>
+            <option value="dn20" name="dn20" id="dn20" {% if DN =="dn20" %} selected {% endif %}>DN20</option>
+            <option value="dn25" name="dn25" id="dn25" {% if DN =="dn25" %} selected {% endif %}>DN25</option>
+            <option value="dn32" name="dn32" id="dn32" {% if DN =="dn32" %} selected {% endif %}>DN32</option>
+            <option value="dn40" name="dn40" id="dn40" {% if DN =="dn40" %} selected {% endif %}>DN40</option>
+            <option value="dn50" name="dn50" id="dn50" {% if DN =="dn50" %} selected {% endif %}>DN50</option>
+        </select>
+        </div>
+        <div class="col-sm-6">
+        <label>Différence de Hauteur</label>
+        <br>
+            <input class="col-lg-9" type='number' placeholder="0" step="0.1" class='form-control' name='height_difference' value="{{height_difference}}" >
+        </div>
+    </div>
+
+
+    <div class="form-group row" id="form2">  
+        <div class="col-sm-6" > 
+        <label>Longueur de la Ligne</label>
+        <br>
+        <input type='number' class="col-lg-9"  placeholder="0" step="0.1" class='form-control' name='Line_Length' value="{{Line_Length}}" required>
+        </div>
+
+        <div class="col-sm-6">
+        <label>T et Coude 90°</label>
+        <br>
+        <input type='number' class="col-lg-9" placeholder="0" min="0" step="1" class='form-control' name='Elbow' value="{{Elbow}}" >
+        </div>
+    </div>
+   
+    
+        <div style='text-align:center' class="text-center">    
+            <button type='submit' value="hesapla" name="submit" class="btn btn-primary btn-lg" id="cal">Calculer</button>
+        </div>
+
+        <div class="form-group row"  >
+        <div class="col-sm-8">   
+            <div style='text-align:right' >
+                <div>
+                    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                         Do something with the message 
+                        <p style='font-weight:bold; font-size: 35px; color:red'>{{ message }} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="result">
+        <p style='font-weight:bold; color:green;text-align: center;'>Q = {{ basinc_kaybi }} m3/h </p>
+    </div>
+    
+    </div>
+    </form>
+    </body>
+</html>
